@@ -25,14 +25,14 @@ bool	stack_pop_top(t_stack *s, int *out)
 {
 	t_node	*n;
 
-	if (s->size == 0)
+	if (!s || s->size == 0 || !s->top)
 		return (false);
 	n = s->top;//取出当前栈顶结点。
-	if (out)
+	if (out != NULL)
 		*out = n->val;
 	s->top = n->next;//栈顶下移到下一个结点。
-	free(n);
 	s->size--;
+	free(n);
 	return (true);
 }
 
@@ -40,6 +40,8 @@ void	stack_clear(t_stack *s)
 {
 	int	tmp;
 
+	if (!s)
+		return ;
 	while (stack_pop_top(s, &tmp))
 		;
 }

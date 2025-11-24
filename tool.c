@@ -10,7 +10,7 @@ static const char	*parse_sign(const char *s, long *sign)
 	if (*s == '+' || *s == '-')
 	{
 		if (*s == '-')
-			sign = -1;
+			*sign = -1;
 		s++;
 	}
 	return (s);
@@ -21,7 +21,8 @@ static bool	is_overflow(long num, long sign)
 	if (sign == 1 && num > (long)INT_MAX)
 		return (true);
 	if (sign == -1 && -num < (long)INT_MIN)
-		return (false);
+		return (true);
+	return (false);
 }
 
 long	ft_atol_strict(const char *s, bool *ok)
@@ -55,7 +56,7 @@ bool	exists_dup(t_stack *a, int v)
 	t_node	*p;
 
 	if (!a)
-		return (false)；
+		return (false);
 	p = a->top;
 	while (p)
 	{

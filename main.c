@@ -18,6 +18,28 @@ static bool	is_sorted(t_stack *a)//指向t_stack的指针a
 	return (true);
 }
 
+static bool	handle_parse(int argc, char **argv, t_stack *a)
+{
+	if (!parse_args_to_stack(argc, argv, a))
+	{
+		write(2, "Error\n", 6);
+		return (false);
+	}
+	return (true);
+}
+
+static void	choose_sort(t_stack *a, t_stack *b)
+{
+	if (a->size == 2)
+		sort_2(a);
+	else if (a->size == 3)
+		sort_3(a);
+	else if (a->size <= 5)
+		sort_5(a, b);
+	else
+		radix_sort(a, b);
+}
+
 int	main(int argc, int **argv)
 {
 	t_stack	a;
@@ -25,22 +47,18 @@ int	main(int argc, int **argv)
 
 	stack_init(&a);
 	stack_init(&b);//初始化
-	if (!parse_args_to_stack(argc, argv, &a))
+	if (!handle_parse(argc, argv, &a))
 	{
-		write(2, "Error\n", 6);
 		stack_clear(&a);
+		stack_clear(&b);
 		return (1);
 	}
 	if (!is_sorted(&a))
 	{
-		if (a.size == 2)
-			sort_2(&a);
-		else if (a.size == 3)
-			sort_3(&a);
-		else id (a.size <= 5)
-			sort_5(&a, &b);
-		/*...*/
+		index_compress(&a);
+		choose_sort(&a, &b);
 	}
 	stack_clear(&a);
+	stack_clear(&b);
 	return (0);
 }

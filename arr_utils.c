@@ -1,5 +1,5 @@
 #include "push_swap.h"
-
+// 把栈里的值拷贝成一个 int 数组
 int	*arr_dup_from_stack(t_stack *a)
 {
 	int		*arr;
@@ -20,6 +20,7 @@ int	*arr_dup_from_stack(t_stack *a)
 	}
 	return (arr);
 }
+// 对 int 数组做排序（升序）
 //经典的插入排序（Insertion Sort），对整型数组 arr 做原地升序排序
 void	arr_isort(int *arr, int n)
 {
@@ -43,6 +44,7 @@ void	arr_isort(int *arr, int n)
 		i++;
 	}
 }
+// 找 value 在数组里的下标
 //线性查找函数：在数组里找值 v 的下标
 int	arr_index_of(int *arr, int n, int v)
 {

@@ -26,6 +26,7 @@ void	stack_init(t_stack *s);
 bool	stack_push_top(t_stack *s, int v);
 bool	stack_pop_top(t_stack *s, int *out);
 void	stack_clear(t_stack *s);
+void	stack_reverse(t_stack *a);
 
 /* ops_basic.c */
 void	op_sa(t_stack *a);
@@ -34,11 +35,20 @@ void	op_pa(t_stack *a, t_stack *b);
 void	op_ra(t_stack *a);
 void	op_rra(t_stack *a);
 
-/* utils (先内联在 parse.c 里实现) */
+/* tool.c */
 long	ft_atol_strict(const char *s, bool *ok);
+bool	exists_dup(t_stack *a, int v);
 
+/* sort */
 void	sort_2(t_stack *a);
 void	sort_3(t_stack *a);
 void	sort_5(t_stack *a, t_stack *b);
+void	index_compress(t_stack *a);
+void	radix_sort(t_stack *a, t_stack *b);
+
+/* arr_utils.c */
+int		*arr_dup_from_stack(t_stack *a);
+void	arr_isort(int *arr, int n);
+int		arr_index_of(int *arr, int n, int v);
 
 #endif
