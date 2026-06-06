@@ -63,7 +63,7 @@ Edge cases (empty input, a single value, an already-sorted stack) produce no out
 
 ---
 
-# push_swap（中文）
+# push_swap
 
 一个排序算法项目：在**只能使用一组受限的栈操作**的前提下，把一组整数排好序，并尽量减少操作数。本实现对「排名压缩」后的值采用**二进制基数排序**，小规模输入用硬编码处理。
 
